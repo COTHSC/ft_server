@@ -1,15 +1,27 @@
-server{
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    server_name localhost;
+    return 302 https://$host$request_uri;
+}
 
-	listen 80;
-	listen [::]:80 ;
-	
-	server_name monsupersite;
-	
+server {
+
+    # SSL configuration
+
+    listen 443 ssl http2 default_server;
+    listen [::]:443 ssl http2 default_server;
+
+	server_name         localhost;
+    ssl_certificate     /etc/nginx/ssl/mysite.crt;
+    ssl_certificate_key /etc/nginx/ssl/mysite.key;
+
+
 	root /var/www/mysite;
 	index index.html index.htm index.nginx-debian.html index.php;
 
 	location / {
-		autoindex on;
+#		autoindex on;
 		try_files $uri $uri/ =404;
 	}
 
