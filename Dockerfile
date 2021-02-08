@@ -11,9 +11,9 @@ RUN apt-get install mariadb-server -y
 RUN apt-get install wget -y
 RUN apt-get install php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip -y
 RUN apt-get install curl
-COPY mysite /etc/nginx/sites-available/
-COPY info.php /var/www/mysite/
-COPY innit.sh /
-COPY wp-config.php /var/www/mysite/wordpress/
-COPY config.inc.php /var/www/mysite/phpmyadmin/
+COPY srcs/mysite /etc/nginx/sites-available/
+COPY srcs/info.php /var/www/mysite/
+COPY srcs/innit.sh /
+COPY srcs/wp-config.php /var/www/mysite/wordpress/
+COPY srcs/config.inc.php /var/www/mysite/phpmyadmin/
 CMD bash innit.sh
